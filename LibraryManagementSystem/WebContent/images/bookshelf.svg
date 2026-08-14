@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#3d2817"/>
+  
+  <!-- Top shelf -->
+  <rect x="0" y="200" width="1920" height="20" fill="#8b6f47"/>
+  
+  <!-- Middle shelf -->
+  <rect x="0" y="540" width="1920" height="20" fill="#8b6f47"/>
+  
+  <!-- Bottom shelf -->
+  <rect x="0" y="880" width="1920" height="20" fill="#8b6f47"/>
+  
+  <!-- Books on top shelf -->
+  <rect x="50" y="100" width="60" height="120" fill="#d4534f"/>
+  <rect x="120" y="90" width="70" height="130" fill="#c41e3a"/>
+  <rect x="200" y="110" width="55" height="110" fill="#ffd700"/>
+  <rect x="270" y="100" width="65" height="120" fill="#4169e1"/>
+  <rect x="350" y="95" width="70" height="125" fill="#8b4513"/>
+  <rect x="430" y="105" width="60" height="115" fill="#228b22"/>
+  <rect x="500" y="100" width="65" height="120" fill="#dc143c"/>
+  <rect x="580" y="110" width="70" height="110" fill="#2f4f4f"/>
+  <rect x="660" y="95" width="60" height="125" fill="#ff6347"/>
+  <rect x="730" y="100" width="70" height="120" fill="#1e90ff"/>
+  <rect x="810" y="105" width="65" height="115" fill="#8b0000"/>
+  <rect x="890" y="100" width="70" height="120" fill="#9acd32"/>
+  <rect x="970" y="110" width="60" height="110" fill="#4b0082"/>
+  <rect x="1040" y="100" width="70" height="120" fill="#ff4500"/>
+  <rect x="1120" y="95" width="65" height="125" fill="#20b2aa"/>
+  <rect x="1200" y="105" width="70" height="115" fill="#a9a9a9"/>
+  <rect x="1280" y="100" width="60" height="120" fill="#8fbc8f"/>
+  <rect x="1350" y="110" width="70" height="110" fill="#d2691e"/>
+  <rect x="1430" y="100" width="65" height="120" fill="#3cb371"/>
+  <rect x="1510" y="105" width="70" height="115" fill="#191970"/>
+  <rect x="1590" y="100" width="60" height="120" fill="#ff1493"/>
+  <rect x="1660" y="110" width="70" height="110" fill="#00ced1"/>
+  <rect x="1740" y="95" width="65" height="125" fill="#696969"/>
+  <rect x="1820" y="105" width="70" height="115" fill="#6495ed"/>
+  
+  <!-- Books on middle shelf -->
+  <rect x="50" y="440" width="65" height="120" fill="#228b22"/>
+  <rect x="125" y="430" width="70" height="130" fill="#dc143c"/>
+  <rect x="205" y="450" width="60" height="110" fill="#4169e1"/>
+  <rect x="275" y="440" width="70" height="120" fill="#ff6347"/>
+  <rect x="355" y="435" width="65" height="125" fill="#2f4f4f"/>
+  <rect x="430" y="445" width="70" height="115" fill="#ffd700"/>
+  <rect x="510" y="440" width="60" height="120" fill="#8b4513"/>
+  <rect x="580" y="450" width="70" height="110" fill="#c41e3a"/>
+  <rect x="660" y="435" width="65" height="125" fill="#4b0082"/>
+  <rect x="735" y="440" width="70" height="120" fill="#20b2aa"/>
+  <rect x="815" y="445" width="60" height="115" fill="#a9a9a9"/>
+  <rect x="885" y="440" width="70" height="120" fill="#8fbc8f"/>
+  <rect x="965" y="450" width="65" height="110" fill="#d2691e"/>
+  <rect x="1040" y="440" width="70" height="120" fill="#3cb371"/>
+  <rect x="1120" y="435" width="60" height="125" fill="#191970"/>
+  <rect x="1190" y="445" width="70" height="115" fill="#ff1493"/>
+  <rect x="1270" y="440" width="65" height="120" fill="#00ced1"/>
+  <rect x="1345" y="450" width="70" height="110" fill="#696969"/>
+  <rect x="1425" y="440" width="60" height="120" fill="#6495ed"/>
+  <rect x="1495" y="445" width="70" height="115" fill="#1e90ff"/>
+  <rect x="1575" y="440" width="65" height="120" fill="#8b0000"/>
+  <rect x="1650" y="450" width="70" height="110" fill="#9acd32"/>
+  <rect x="1730" y="435" width="60" height="125" fill="#ff4500"/>
+  <rect x="1800" y="445" width="70" height="115" fill="#228b22"/>
+  
+  <!-- Books on bottom shelf -->
+  <rect x="50" y="780" width="70" height="120" fill="#4169e1"/>
+  <rect x="130" y="770" width="65" height="130" fill="#ff6347"/>
+  <rect x="205" y="790" width="70" height="110" fill="#2f4f4f"/>
+  <rect x="285" y="780" width="60" height="120" fill="#ffd700"/>
+  <rect x="355" y="775" width="70" height="125" fill="#8b4513"/>
+  <rect x="435" y="785" width="65" height="115" fill="#c41e3a"/>
+  <rect x="510" y="780" width="70" height="120" fill="#4b0082"/>
+  <rect x="590" y="790" width="60" height="110" fill="#20b2aa"/>
+  <rect x="660" y="775" width="70" height="125" fill="#a9a9a9"/>
+  <rect x="740" y="780" width="65" height="120" fill="#8fbc8f"/>
+  <rect x="815" y="785" width="70" height="115" fill="#d2691e"/>
+  <rect x="895" y="780" width="60" height="120" fill="#3cb371"/>
+  <rect x="965" y="790" width="70" height="110" fill="#191970"/>
+  <rect x="1045" y="780" width="65" height="120" fill="#ff1493"/>
+  <rect x="1120" y="775" width="70" height="125" fill="#00ced1"/>
+  <rect x="1200" y="785" width="60" height="115" fill="#696969"/>
+  <rect x="1270" y="780" width="70" height="120" fill="#6495ed"/>
+  <rect x="1350" y="790" width="65" height="110" fill="#1e90ff"/>
+  <rect x="1425" y="780" width="70" height="120" fill="#8b0000"/>
+  <rect x="1505" y="785" width="60" height="115" fill="#9acd32"/>
+  <rect x="1575" y="780" width="70" height="120" fill="#ff4500"/>
+  <rect x="1655" y="790" width="65" height="110" fill="#228b22"/>
+  <rect x="1730" y="775" width="70" height="125" fill="#dc143c"/>
+  <rect x="1810" y="785" width="60" height="115" fill="#4169e1"/>
+  
+  <!-- Shadow overlay for better text readability -->
+  <rect width="1920" height="1080" fill="rgba(0, 0, 0, 0.4)"/>
+</svg>
