@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books - Library Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-container">
+            <h2>Library Management System</h2>
+            <div class="nav-menu">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="books.html">Books</a>
+                <a href="mybooks.html" class="active">My Books</a>
+                <a href="admin.html">Admin</a>
+                <span class="user-info" id="userDisplay">Welcome, User!</span>
+                <a href="#" class="btn-logout" onclick="confirmLogout(); return false;">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="confirmation-modal">
+        <div class="confirmation-card">
+            <div class="confirmation-header">
+                <i class="fas fa-question-circle"></i>
+                <h3>Confirm Book Return</h3>
+            </div>
+            <div class="confirmation-body">
+                <p id="confirmationMessage">Are you sure you want to return this book?</p>
+            </div>
+            <div class="confirmation-footer">
+                <button class="btn btn-secondary" onclick="cancelReturn()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmReturn()">Yes, Return</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mybooks-container">
+        <div class="mybooks-header">
+            <h1>My Books</h1>
+            <p>Books you have issued</p>
+        </div>
+
+        <div class="books-table-container">
+            <table class="books-table" id="myBooksTable">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Issue Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="myBooksBody">
+                    <!-- Books will be loaded here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('loggedIn');
+                window.location.href = 'login.html';
+            }
+        }
+        // Load issued books on page load
+        window.addEventListener('load', function() {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (!loggedInUser) {
+                alert('Please login first');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Hide admin link for non-admin users
+            const adminLink = document.querySelector('a[href="admin.html"]');
+            if (loggedInUser.role !== 'admin') {
+                if (adminLink) adminLink.style.display = 'none';
+            }
+            
+            document.getElementById('userDisplay').textContent = 'Welcome, ' + loggedInUser.fullName + '!';
+            const myBooksBody = document.getElementById('myBooksBody');
+            const issuedBooks = getCurrentUserIssuedBooks();
+            
+            if (issuedBooks.length === 0) {
+                myBooksBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No books issued yet</td></tr>';
+                return;
+            }
+
+            myBooksBody.innerHTML = '';
+            issuedBooks.forEach((book, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${book.title}</td>
+                    <td>${book.issueDate}</td>
+                    <td>${book.dueDate}</td>
+                    <td><span style="background-color: #28a745; color: white; padding: 5px 10px; border-radius: 3px;">${book.status}</span></td>
+                    <td><button class="btn btn-small btn-danger" onclick="returnBook(${index})">Return</button></td>
+                `;
+                myBooksBody.appendChild(row);
+            });
+        });
+
+        // Store book index for confirmation
+        let pendingReturnIndex = null;
+
+        // Return Book Function
+        function returnBook(index) {
+            let issuedBooks = getCurrentUserIssuedBooks();
+            const book = issuedBooks[index];
+            pendingReturnIndex = index;
+            
+            document.getElementById('confirmationMessage').textContent = `Are you sure you want to return "${book.title}"?`;
+            document.getElementById('confirmationModal').style.display = 'flex';
+        }
+
+        // Confirm Return
+        function confirmReturn() {
+            document.getElementById('confirmationModal').style.display = 'none';
+            
+            let issuedBooks = getCurrentUserIssuedBooks();
+            const returnedBook = issuedBooks[pendingReturnIndex];
+            issuedBooks.splice(pendingReturnIndex, 1);
+            setCurrentUserIssuedBooks(issuedBooks);
+
+            let issueHistory = getBookIssueHistory();
+            const historyIndex = issueHistory.findIndex(issue => issue.issueId === returnedBook.issueId);
+            if (historyIndex !== -1) {
+                issueHistory[historyIndex].status = 'Returned';
+                issueHistory[historyIndex].returnDate = new Date().toISOString().split('T')[0];
+                setBookIssueHistory(issueHistory);
+            }
+
+            const books = getStoredBooks();
+            const bookIndex = books.findIndex(book => Number(book.id) === Number(returnedBook.bookId));
+            if (bookIndex !== -1) {
+                books[bookIndex].availableCopies = Math.min(books[bookIndex].copies, books[bookIndex].availableCopies + 1);
+                setStoredBooks(books);
+            }
+            
+            // Show success notification card
+            showNotification('success', 'Book Returned Successfully', `"${returnedBook.title}" has been returned to the library.`);
+            
+            // Reload after a delay
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+            
+            pendingReturnIndex = null;
+        }
+
+        // Cancel Return
+        function cancelReturn() {
+            document.getElementById('confirmationModal').style.display = 'none';
+            pendingReturnIndex = null;
+        }
+
+        // Show notification card function
+        function showNotification(type, title, message) {
+            const container = document.getElementById('notificationContainer');
+            const notificationId = 'notification-' + Date.now();
+            
+            const notificationHTML = `
+                <div class="notification ${type}" id="${notificationId}">
+                    <div class="notification-card">
+                        <div class="notification-icon">
+                            ${type === 'success' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-exclamation"></i>'}
+                        </div>
+                        <div class="notification-body">
+                            <h3>${title}</h3>
+                            <p>${message}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', notificationHTML);
+            
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                const element = document.getElementById(notificationId);
+                if (element) {
+                    element.remove();
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

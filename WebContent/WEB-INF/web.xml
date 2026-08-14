@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+    version="4.0">
+
+    <display-name>Library Management System</display-name>
+
+    <!-- Login Servlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.library.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <!-- Register Servlet -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.library.servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <!-- Logout Servlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.library.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- Issue Servlet -->
+    <servlet>
+        <servlet-name>IssueServlet</servlet-name>
+        <servlet-class>com.library.servlet.IssueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IssueServlet</servlet-name>
+        <url-pattern>/issueBook</url-pattern>
+    </servlet-mapping>
+
+    <!-- Return Servlet -->
+    <servlet>
+        <servlet-name>ReturnServlet</servlet-name>
+        <servlet-class>com.library.servlet.ReturnServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReturnServlet</servlet-name>
+        <url-pattern>/returnBook</url-pattern>
+    </servlet-mapping>
+
+    <!-- Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Session Configuration -->
+    <session-config>
+        <cookie-config>
+            <secure>false</secure>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+        <timeout>30</timeout>
+    </session-config>
+
+</web-app>
